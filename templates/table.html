@@ -1,0 +1,14 @@
+{% comment %}<html>
+    <body>
+        {% for device in devices %}
+            {{device}}
+        {% endfor %}
+    </body>
+</html>{% endcomment %}
+{% for device in devices %}
+    <p>{{device.device_id}} --|-- {{device.device_ip}} --|-- {{device.company_name.company_name}}</p>  
+{% endfor %}
+
+{% for company in companies %}
+    <p>{{company.company_name.name}}</p>
+{% endfor %}
