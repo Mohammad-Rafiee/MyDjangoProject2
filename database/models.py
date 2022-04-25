@@ -13,8 +13,8 @@ class Companies(models.Model):
 
 
 class Devices(models.Model):
-    device_id = models.CharField(max_length=50, verbose_name="id")
-    device_ip = models.CharField(max_length=50, verbose_name="ip")
+    device_id = models.CharField(max_length=50, verbose_name="ID")
+    device_ip = models.CharField(max_length=50, verbose_name="IP")
     company_name = models.ForeignKey(Companies, on_delete=models.CASCADE, default="", null=True, blank=True)
 
     class Meta:
