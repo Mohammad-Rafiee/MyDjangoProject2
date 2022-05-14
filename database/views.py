@@ -20,6 +20,9 @@ def tablePage(request):
     }
     return render(request, 'table.html', context)
 
+def categories(request, slug):
+    category = get_object_or_404(Devices, slug)
+
 def hotel_image_view(request):
     if request.method == 'POST':
         form = HotelForm(request.POST, request.FILES)
