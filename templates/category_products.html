@@ -1,0 +1,3 @@
+{% for cat in categories %}
+    <a href="{% url 'category_products' cat.slug %}"></a>
+{% endfor %}
