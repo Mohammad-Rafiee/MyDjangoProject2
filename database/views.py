@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Devices, Companies
 from django.http import HttpResponse
-from .forms import HotelForm
+from .forms import HotelForm, DataForm
 from .models import Hotel
 
 # Create your views here.
@@ -73,3 +73,19 @@ def display_hotel_images(request, id):
         hotels = Hotel.objects.get(id=id)
         return render(request, 'display_hotel_images.html',
                     {'hotel_images':hotels})
+
+def data_form(request):
+
+    if request.method == 'POST':
+        form = DataForm(request.POST)
+        if form.is_valid():
+            name = request.POST.get('name')
+            age = request.POST.get('age')
+            return redirect('tablePage')
+
+    form = DataForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'dataform.html', context)

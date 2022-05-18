@@ -1,0 +1,14 @@
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tbody>
+        <tr>
+            <td>{{form.name.label}}: {{form.name}}</td>
+        </tr>
+        <tr>
+            <td>{{form.age.label}}: {{form.age}}</td>
+        </tr>       
+    </tbody>
+    </table>
+    <button type="submit">Send</button>
+</form>
