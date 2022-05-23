@@ -12,3 +12,14 @@
     </table>
     <button type="submit">Send</button>
 </form>
+
+<form action="{% url 'contactPage' %}" method="POST" novalidate>
+    {% csrf_token %}
+    <table border="1">
+        {{ form }}
+    </table>
+    <button type="submit">Submit</button>
+</form>
+
+{% comment %}
+{% endcomment %}

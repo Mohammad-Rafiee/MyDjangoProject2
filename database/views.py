@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Devices, Companies
 from django.http import HttpResponse
-from .forms import HotelForm, DataForm
+from .forms import HotelForm, DataForm, ContactForm
 from .models import Hotel
-
+from django.
++
 # Create your views here.
 def tablePage(request):
     
@@ -58,7 +59,7 @@ def hotel_image_view(request):
             form.save()
             return redirect('success')
     else:
-        form = HotelForm
+        form = HotelForm()
     
     return render(request, 'hotel_image_form.html', {'form': form})
 
@@ -87,5 +88,14 @@ def data_form(request):
 
     context = {
         'form': form
+    }
+    return render(request, 'dataform.html', context)
+
+# class DataForm(MultiFormsView):
+
+def contactPage(request):
+    form = ContactForm()
+    context ={
+        'form': form,
     }
     return render(request, 'dataform.html', context)
