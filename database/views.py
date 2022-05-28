@@ -3,8 +3,9 @@ from .models import Devices, Companies
 from django.http import HttpResponse
 from .forms import HotelForm, DataForm, ContactForm
 from .models import Hotel
-from django.
-+
+from django.views.generic.edit import FormView
+# from django.
+
 # Create your views here.
 def tablePage(request):
     
@@ -99,3 +100,12 @@ def contactPage(request):
         'form': form,
     }
     return render(request, 'dataform.html', context)
+
+class ContactFormView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
