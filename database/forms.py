@@ -1,5 +1,5 @@
 from django import forms
-from .models import Hotel
+from .models import Devices, Hotel
 
 
 class HotelForm(forms.ModelForm):
@@ -43,3 +43,9 @@ class ContactForm(forms.Form):
 
     def send_email(self):
         pass
+
+class DeviceConfigForm(forms.ModelForm):
+
+    class Meta:
+        model = Devices
+        fields = ['ssid', 'password', 'device_ip', 'broker_ip', 'gateway', 'subnet', 'port', 'mqtt_username', 'mqtt_password']

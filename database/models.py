@@ -17,6 +17,14 @@ class Devices(models.Model):
     device_ip = models.CharField(max_length=50, verbose_name="IP")
     company_name = models.ForeignKey(Companies, on_delete=models.CASCADE, default="", null=True, blank=True)
     is_active = models.BooleanField(verbose_name='Is Checked?', null=True)
+    ssid = models.CharField(max_length=100, null=True, blank=True)
+    password = models.CharField(max_length=200, null=True, blank=True)
+    broker_ip = models.CharField(max_length=100, null=True, blank=True)
+    gateway = models.CharField(max_length=100, null=True, blank=True)
+    subnet = models.CharField(max_length=100, null=True, blank=True)
+    port = models.CharField(max_length=100, null=True, blank=True)
+    mqtt_username = models.CharField(max_length=100, null=True, blank=True)
+    mqtt_password = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Devices'

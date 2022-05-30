@@ -11,4 +11,5 @@ urlpatterns = [
     path('names_to_devices/<id>', views.names_to_devices, name='names_to_devices'),
     path('data_form/', views.data_form, name='data_form'),
     path('data_form1/', views.contactPage, name='contactPage'),
+    path('device_form/<id>', views.deviceForm, name='deviceForm'),
 ]  

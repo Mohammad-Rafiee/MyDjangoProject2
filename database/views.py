@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Devices, Companies
 from django.http import HttpResponse
-from .forms import HotelForm, DataForm, ContactForm
+from .forms import HotelForm, DataForm, ContactForm, DeviceConfigForm
 from .models import Hotel
 from django.views.generic.edit import FormView
 # from django.
@@ -109,3 +109,36 @@ class ContactFormView(FormView):
     def form_valid(self, form):
         form.send_email()
         return super().form_valid(form)
+
+def deviceForm(request, id):
+    if request.method == 'POST':
+        form = DeviceConfigForm(request.POST)
+        if form.is_valid():
+            # create = DeviceModel.objects.create(DeviceConfigForm)
+            # try:
+            # form.save()
+            # except IntegrityError:
+            ssid = form.cleaned_data['ssid']
+            password = form.cleaned_data['password']
+            device_ip = form.cleaned_data['device_ip']
+            broker_ip = form.cleaned_data['broker_ip']
+            gateway = form.cleaned_data['gateway']
+            subnet = form.cleaned_data['subnet']
+            port = form.cleaned_data['port']
+            mqtt_username = form.cleaned_data['mqtt_username']
+            mqtt_password = form.cleaned_data['mqtt_password']
+            
+            reg = Devices(ssid=ssid, password=password, device_ip=device_ip, broker_ip=broker_ip, gateway=gateway, subnet=subnet, port=port, mqtt_username=mqtt_username, mqtt_password=mqtt_password)
+            reg.save()
+
+            # publish.single(send_topic, 'cli', hostname=broker_address, auth = {'username':user, 'password':password})
+            # form.save()
+            return redirect('tablePage')
+    else:
+        form = DeviceConfigForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'deviceform.html', context)
