@@ -13,7 +13,7 @@ class Companies(models.Model):
 
 
 class Devices(models.Model):
-    device_id = models.CharField(max_length=50, verbose_name="ID")
+    deviceid = models.CharField(max_length=50, verbose_name="ID")
     device_ip = models.CharField(max_length=50, verbose_name="IP")
     company_name = models.ForeignKey(Companies, on_delete=models.CASCADE, default="", null=True, blank=True)
     is_active = models.BooleanField(verbose_name='Is Checked?', null=True)

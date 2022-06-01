@@ -128,8 +128,15 @@ def deviceForm(request, id):
             mqtt_username = form.cleaned_data['mqtt_username']
             mqtt_password = form.cleaned_data['mqtt_password']
             
-            reg = Devices(ssid=ssid, password=password, device_ip=device_ip, broker_ip=broker_ip, gateway=gateway, subnet=subnet, port=port, mqtt_username=mqtt_username, mqtt_password=mqtt_password)
-            reg.save()
+            # reg = Devices(ssid=ssid, password=password, device_ip=device_ip, broker_ip=broker_ip, gateway=gateway, subnet=subnet, port=port, mqtt_username=mqtt_username, mqtt_password=mqtt_password)
+            # reg.save()
+            Devices.objects.filter(device_id = id).update(ssid = 'HI')
+            # print(Devices.device_id)
+            print(id)
+            # print(ssid)
+            # print(port)
+            # print(mqtt_password)
+            # print(str(reg))
 
             # publish.single(send_topic, 'cli', hostname=broker_address, auth = {'username':user, 'password':password})
             # form.save()
